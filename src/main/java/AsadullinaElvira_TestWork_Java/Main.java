@@ -17,8 +17,7 @@ public class Main {
         Stream.generate(() -> "*").limit(15).forEach(System.out::print);
         printMessage("");
 
-        int[] myArray = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-        getMultipleOfThreeNumbers(myArray);
+        getMultipleOfThreeNumbers();
     }
 
     /** Составить алгоритм: если введенное число больше 7, то вывести “Привет”. */
@@ -54,17 +53,29 @@ public class Main {
     }
 
     /** Составить алгоритм: на входе есть числовой массив, необходимо вывести элементы массива кратные 3 */
-    public static void getMultipleOfThreeNumbers(int [] myArr) {
-        if (myArr.length == 0) {
-            printMessage("Массив пуст.");
-        } else {
-            int[] newArr = IntStream.of(myArr).filter(item -> item % 3 == 0).toArray();
-            if (newArr.length == 0) {
-                printMessage("В массиве нет чисел, кратных трем.");
-            } else {
-                System.out.print("Числа в массиве, кратные трем: ");
-                printMessage(Arrays.toString(newArr).replaceAll("\\[|\\]", ""));
+    public static void getMultipleOfThreeNumbers() {
+        int[] myArr = {};
+        Scanner sc = new Scanner(System.in);
+        boolean isArr = false;
+        while (!isArr) {
+            try {
+                printMessage("Введите целые числа через пробел: ");
+                String input = sc.nextLine();
+                myArr = Arrays.stream(input.split(" "))
+                        .mapToInt(Integer::parseInt)
+                        .toArray();
+                isArr = true;
+            } catch (Exception e) {
+                printMessage("Необходимо ввести целые числа. Попробуйте снова.");
             }
+        }
+
+        int[] newArr = IntStream.of(myArr).filter(item -> item % 3 == 0).toArray();
+        if (newArr.length == 0) {
+            printMessage("В массиве нет чисел, кратных трем.");
+        } else {
+            System.out.print("Числа в массиве, кратные трем: ");
+            printMessage(Arrays.toString(newArr).replaceAll("\\[|\\]", ""));
         }
     }
 
