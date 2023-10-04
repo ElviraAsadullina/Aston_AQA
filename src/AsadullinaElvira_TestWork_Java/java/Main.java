@@ -1,4 +1,4 @@
-package main.java;
+package AsadullinaElvira_TestWork_Java.java;
 
 import java.util.Arrays;
 import java.util.Scanner;
